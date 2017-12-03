@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var notes = require('../models/notes-memory');
 
+// get methods
 // Add Note.
 router.get('/add', (req, res, next) => {
     res.render('noteedit', {
@@ -15,6 +16,47 @@ router.get('/add', (req, res, next) => {
     });
 });
 
+//Edit Notes
+router.get('/edit', (req, res, next) => {
+    notes.read(req.query.key)
+    .then(note => {
+        res.render('noteedit', {
+            title: note ? ("Edit " + note.title) : "Add a Note",
+            docreate: false,
+            notekey: req.query.key,
+            note: note
+        });
+    })
+    .catch(err => { next(err); });
+});
+
+// Read Notes
+router.get('/view', (req, res, next) => {
+    notes.read(req.query.key)
+    .then(note => {
+        res.render('noteview', {
+            title: note ? note.title : "",
+            notekey: req.query.key,
+            note: note
+        });
+    })
+    .catch(err => { next(err); });
+});
+
+// Destroy Notes
+router.get('/destroy', (req, res, next) => {
+    notes.read(req.query.key)
+    .then(note => {
+        res.render('notedestroy', {
+            title: note ? note.title : "",
+            notekey: req.query.key,
+            note: note
+        });
+    })
+    .catch(err => { next(err); });
+});
+
+// post methods
 // Save Note
 router.post('/save', (req, res, next) => {
     var p;
@@ -31,16 +73,10 @@ router.post('/save', (req, res, next) => {
     .catch(err => { next(err); });
 });
 
-// Read Notes
-router.get('/view', (req, res, next) => {
-    notes.read(req.query.key)
-    .then(note => {
-        res.render('noteview', {
-            title: note ? note.title : "",
-            notekey: req.query.key,
-            note: note
-        });
-    })
+// Destroy a note
+router.post('/destroy/confirm', (req, res, next) => {
+    notes.destroy(req.body.notekey)
+    .then(() => { res.redirect('/'); })
     .catch(err => { next(err); });
 });
 
