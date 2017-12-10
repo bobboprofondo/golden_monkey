@@ -45,4 +45,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.use('/vendor/bootstrap', express.static(
+  path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+app.use('/vendor/jquery', express.static(
+  path.join(__dirname, 'node_modules', 'jquery', 'dist')));
+
 module.exports = app;
