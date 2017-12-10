@@ -22,14 +22,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/vendor/bootstrap', express.static(
-  path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
-app.use('/vendor/jquery', express.static(
-  path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 
 app.use('/', index);
 //app.use('/users', users);
 app.use('/notes', notes);
+
+app.use('/vendor/bootstrap', express.static(
+  path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+app.use('/vendor/jquery', express.static(
+  path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
