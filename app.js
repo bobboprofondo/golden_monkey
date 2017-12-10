@@ -14,6 +14,10 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use('/vendor/bootstrap', express.static(
+  path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+app.use('/vendor/jquery', express.static(
+  path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -45,9 +49,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use('/vendor/bootstrap', express.static(
-  path.join(__dirname, 'node_moduless', 'bootstrap', 'dist')));
-app.use('/vendor/jquery', express.static(
-  path.join(__dirname, 'node_moduless', 'jquery', 'dist')));
 
 module.exports = app;
