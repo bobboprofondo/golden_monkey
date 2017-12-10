@@ -46,8 +46,8 @@ app.use(function(err, req, res, next) {
 });
 
 app.use('/vendor/bootstrap', express.static(
-  path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+  path.join(__dirname, 'node_moduless', 'bootstrap', 'dist')));
 app.use('/vendor/jquery', express.static(
-  path.join(__dirname, 'node_modules', 'jquery', 'dist')));
+  path.join(__dirname, 'node_moduless', 'jquery', 'dist')));
 
 module.exports = app;
