@@ -27,12 +27,11 @@ app.use('/', index);
 //app.use('/users', users);
 app.use('/notes', notes);
 
-app.use('/vendor/bootstrap', express.static(
-  path.join(__dirname, 'node_modules', 'bootstrap', 'dist'))
-);
-app.use('/vendor/jquery', express.static(
-  path.join(__dirname, 'node_modules', 'jquery', 'dist'))
-);
+// app.use('/vendor/bootstrap', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+app.use('/vendor/bootstrap/css', express.static(path.join(__dirname, 'pulse'));
+app.use('/vendor/bootstrap/fonts', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'fonts'));
+app.use('/vendor/bootstrap/js', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'js'));
+app.use('/vendor/jquery', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
